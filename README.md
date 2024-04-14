@@ -2,3 +2,4 @@
 An environment for testing and comparing branch predictors.
 
 Tejas Oberoi
+John Jennings
