@@ -1,5 +1,6 @@
 /*
-Source for a clear explanation of the interface functions and parameters:
+This is the complete C++ interface for branch predictors in ChampSim.
+Here is the source for a clear explanation of the interface functions and parameters:
 https://github.com/ChampSim/ChampSim/blob/2b8d3fc28abb6072d7675228418fa7cfe862d4dc/docs/src/Modules.rst#branch-predictors
 */
 
