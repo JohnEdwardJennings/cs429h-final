@@ -1,0 +1,10 @@
+/*
+Source for a clear explanation of the interface functions and parameters:
+https://github.com/ChampSim/ChampSim/blob/2b8d3fc28abb6072d7675228418fa7cfe862d4dc/docs/src/Modules.rst#branch-predictors
+*/
+
+void O3_CPU::initialize_branch_predictor();
+
+uint8_t O3_CPU::predict_branch(uint64_t ip, uint64_t predicted_target, uint8_t always_taken, uint8_t branch_type);
+
+void O3_CPU::last_branch_result(uint64_t ip, uint64_t branch_target, uint8_t taken, uint8_t branch_type);
