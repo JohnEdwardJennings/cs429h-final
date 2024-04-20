@@ -17,7 +17,7 @@ Team members:
 	4. Click "Generate token".
 	5. Save the token somewhere accessible; you will enter it every time git asks for a password.
 
-2. Install jq, a utility that the testing script uses to edit JSON configuration files:
+2. Install `jq`, a utility that the testing script uses to edit JSON configuration files:
 ```
 ssh linux.cs
 curl -s https://webinstall.dev/jq | bash
