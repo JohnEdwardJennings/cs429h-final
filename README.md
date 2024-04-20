@@ -22,9 +22,7 @@ Team members:
 ssh linux.cs
 curl -s https://webinstall.dev/jq | bash
 ```
-
-	- If prompted, enter:
-
+If prompted, enter:
 ```
 source ~/.config/envman/PATH.env
 ```
