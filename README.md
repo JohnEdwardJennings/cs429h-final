@@ -39,6 +39,7 @@ cd ChampSim
 git submodule update --init
 vcpkg/bootstrap-vcpkg.sh
 vcpkg/vcpkg install
+cd ..
 ```
 
 5. Copy the benchmarks (these files are too large for GitHub):
