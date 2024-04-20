@@ -33,7 +33,15 @@ git clone --recurse-submodules https://github.com/JohnEdwardJennings/cs429h-fina
 ```
 Enter your personal access token when prompted for a password.
 
-4. Copy the benchmarks (these files are too large for GitHub):
+4. Resolve ChampSim's dependencies:
+```
+cd ChampSim
+git submodule update --init
+vcpkg/bootstrap-vcpkg.sh
+vcpkg/vcpkg install
+```
+
+5. Copy the benchmarks (these files are too large for GitHub):
 	1. Go to [https://drive.google.com/file/d/1qs8t8-YWc7lLoYbjbH_d3lf1xdoYBznf/view?pli=1](https://drive.google.com/file/d/1qs8t8-YWc7lLoYbjbH_d3lf1xdoYBznf/view?pli=1).
 	2. Click "Download". Google Drive will display a warning about the file being too large to scan for viruses; click "Download anyway".
 	3. Run the following commands, substituting your downloads folder for `<Downloads>` and your UTCS username for `<your-csid>`. The `scp` command must execute from your machine, hence exiting and re-entering the SSH connection.
