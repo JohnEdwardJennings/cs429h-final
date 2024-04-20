@@ -53,8 +53,8 @@ mkdir branch-predictors/<branch-predictor-name>
 cp interface.txt branch-predictors/<branch-predictor-name>/<filename>.cc
 vim branch-predictors/<branch-predictor-name>/<filename>.cc
 ```
-	- Substitute desired strings for `<branch-predictor-name>` and `<filename>` in the commands above (to be safe, stick to alphanumeric characters and hyphens).
-	- Implement the methods to create a fully functional branch predictor!
+* Substitute desired strings for `<branch-predictor-name>` and `<filename>` in the commands above (to be safe, stick to alphanumeric characters and hyphens).
+* Implement the methods to create a fully functional branch predictor!
 
 ### Run tests
 ```
