@@ -12,7 +12,7 @@ for i in ../branch-predictors/*; do
 		jj=${j#../ipc1_public/}
 		jjj=${jj%.champsimtrace.xz}
 		touch ../out/"$ii"_"$jjj".out
-		bin/champsim --warmup-instructions 100 --simulation-instructions $2 1000 "$j" > ../out/"$ii"_"$jjj".out
+		bin/champsim --warmup-instructions 100 --simulation-instructions $2 1000 "$j" | ../concise > ../out/"$ii"_"$jjj".out
 	done
 	rm champsim_config_scratch.json
 done
