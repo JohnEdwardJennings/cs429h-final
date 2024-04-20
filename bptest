@@ -1,0 +1,19 @@
+# This is the script for testing branch predictors using ChampSim.
+
+cd ChampSim
+for i in ../branch-predictors/*; do
+	ii=${i#../branch-predictors/}
+	echo "$ii"
+	touch champsim_config_scratch.json
+	echo $(jq --arg ii "$ii" '.ooo_cpu[0].branch_predictor = $ii' champsim_config.json) > champsim_config_scratch.json 
+	./config.sh --branch-dir ../branch-predictors champsim_config_scratch.json 
+	make -s
+	for j in ../ipc1_public/*.champsimtrace.xz; do
+		jj=${j#../ipc1_public/}
+		jjj=${jj%.champsimtrace.xz}
+		touch ../out/"$ii"_"$jjj".out
+		bin/champsim --warmup-instructions 100 --simulation-instructions $2 1000 "$j" > ../out/"$ii"_"$jjj".out
+	done
+	rm champsim_config_scratch.json
+done
+cd ..
