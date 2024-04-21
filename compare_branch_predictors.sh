@@ -25,8 +25,6 @@ print_single_predictor() {
     echo "***"
 }
 
-# Function to print branch prediction accuracy for all branch predictors
-# Function to print branch prediction accuracy for all branch predictors
 print_all_predictors() {
     echo "***"
     echo "bimodal-copy, gshare-copy, perceptron-copy: Branch Prediction Accuracy | MPKI | and so on"
@@ -35,9 +33,9 @@ print_all_predictors() {
         bimodal_stats=$(extract_stats "$file")
         gshare_stats=$(extract_stats "${file/bimodal-copy/gshare-copy}")
         perceptron_stats=$(extract_stats "${file/bimodal-copy/perceptron-copy}")
-        accuracies=$(printf "%s, %s, %s" "${bimodal_stats%|*}" "${gshare_stats%|*}" "${perceptron_stats%|*}" | sed 's/|/%, /g')
-        mpkis=$(printf "%s, %s, %s" "${bimodal_stats#*|}" "${gshare_stats#*|}" "${perceptron_stats#*|}" | sed 's/|/, /g')
-        echo "${file##*/}: $accuracies | $mpkis"
+        accuracies=$(printf "%5s, %5s, %5s" "${bimodal_stats%|*}" "${gshare_stats%|*}" "${perceptron_stats%|*}" | sed 's/|/%, /g')
+        mpkis=$(printf "%5s, %5s, %5s" "${bimodal_stats#*|}" "${gshare_stats#*|}" "${perceptron_stats#*|}" | sed 's/|/, /g')
+        printf "%-40s %s | %s\n" "${file##*/}:" "$accuracies" "$mpkis"
     done
     echo "***"
 }
