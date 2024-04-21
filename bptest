@@ -1,7 +1,12 @@
 # This is the script for testing branch predictors using ChampSim.
 
+name="$1"
+if [ "$1" == "" ]
+then
+	name=*
+fi
 cd ChampSim
-for i in ../branch-predictors/*; do
+for i in ../branch-predictors/$name; do
 	ii=${i#../branch-predictors/}
 	echo "$ii"
 	touch champsim_config_scratch.json
