@@ -5,7 +5,7 @@
 
 namespace
 {
-constexpr std::size_t BIMODAL_TABLE_SIZE = 16384;
+constexpr std::size_t BIMODAL_TABLE_SIZE = 1 << 14; // og: 1 << 14
 constexpr std::size_t BIMODAL_PRIME = 16381;
 constexpr std::size_t COUNTER_BITS = 2;
 
