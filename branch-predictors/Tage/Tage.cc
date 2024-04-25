@@ -5,23 +5,10 @@ https://github.com/ChampSim/ChampSim/blob/2b8d3fc28abb6072d7675228418fa7cfe862d4
 */
 
 // first step: implement the partial tagging stuff (the 5 buffers that each have distinct global history lengths that are xor'ed with PC (basically gshare) to create "tags")
-// specifically we need to "fold" the largeglobal histories into 10-bit indexes and 8-bit tags(via random XORs and shift-registers and etc)
+// specifically we need to "fold" the largeglobal histories into 10-bit indexes and 8-bit tags(via XORs and shifting and etc)
 // then gotta do stuff with the tags (to determine which buffer's prediction to take)
 
 // potentially add the path stuff to XOR with the current hash function i have
-
-// basically rn accuracy ishorrible with 50k as well (10% less than local history when loaclhistory does 10k iterations)
-
-/*
-The strategy of decreasing tag sizes and increasing index sizes is a balancing act between memory efficiency and predictive accuracy. It reflects an optimization where tables dealing with shorter histories use longer tags to handle the higher potential for collision due to the less distinguishing nature of short histories. Conversely, tables with longer histories use larger indexes to better manage the increased complexity and reduced collision risk associated with longer branch sequences.
-*/
-
-// todo for tomorrow: implement PHR....ensure update() logic is correct (ie with the "useful" stuff)...ensure hashing is correct...look into both github's code and try to logic match
-
-// look in detail at the hash functions (CSRs and PHRs) for ltage.cc (ie: potentially copy paste shift register logic and substitute it with the fold_history logic and see if any accuracy differences)
-
-// right now: only 3% better than if i only use the bimodal table...
-// right now: mine is 12% worse than other implementation (if other implementation only uses bimodal...else it is 20% worse)
 
 #include <algorithm>
 #include <array>
@@ -118,8 +105,8 @@ std::size_t fold_global_history(bool utilizeIP, uint64_t ip, uint64_t tableNum, 
 
     for (uint64_t i = 0; i < hist_len; i += output_len) {
         std::size_t history = 0;
-        for (uint64_t j = 0; j < output_len; j++) {
-            history |= (((uint64_t) bh_vector[0]) << j);
+        for (uint64_t j = i; j < std::min(hist_len, output_len + i); j++) {
+            history |= (((uint64_t) bh_vector[0]) << (j - i));
             bh_vector >>= 1;
         }
         //tempHistory = history & ((1 << output_len) - 1); // extracts rightmost output_len bits
@@ -133,9 +120,11 @@ std::size_t fold_global_history(bool utilizeIP, uint64_t ip, uint64_t tableNum, 
         foldedHistory ^= (ip & ((1 << output_len) - 1));
         ip = ip >> output_len;
         foldedHistory ^= (ip & ((1 << output_len) - 1)); // this is the resulting index into "prediction_table"
+        // ip = ip >> output_len;
+        // foldedHistory ^= (ip & ((1 << output_len) - 1));
     }
 
-    return foldedHistory;
+    return foldedHistory & ((1 << output_len) - 1);
 }
 
 // to be completed (using same 2 shift registers principle from the paper: https://jilp.org/vol7/v7paper10.pdf)

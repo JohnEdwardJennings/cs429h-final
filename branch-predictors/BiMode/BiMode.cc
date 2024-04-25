@@ -19,8 +19,8 @@ https://github.com/ChampSim/ChampSim/blob/2b8d3fc28abb6072d7675228418fa7cfe862d4
 
 namespace
 {
-constexpr std::size_t GLOBAL_HISTORY_LENGTH = 14;
-constexpr std::size_t PC_TAG_LENGTH = 14; // determines the number of rightmost bits of the PC used for indexing
+constexpr std::size_t GLOBAL_HISTORY_LENGTH = 13;
+constexpr std::size_t PC_TAG_LENGTH = 13; // determines the number of rightmost bits of the PC used for indexing
 constexpr std::size_t PC_TAG_TABLE_SIZE = 1 << PC_TAG_LENGTH; 
 constexpr std::size_t firstKBitsOfHistory = GLOBAL_HISTORY_LENGTH >> 1;
 constexpr std::size_t COUNTER_BITS = 2; // saturated counter length

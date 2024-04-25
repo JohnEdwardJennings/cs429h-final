@@ -14,6 +14,8 @@ https://github.com/ChampSim/ChampSim/blob/2b8d3fc28abb6072d7675228418fa7cfe862d4
 
 // using a prime number for mod instead of 2^12 does help by 1%...but not hardware efficient since modulo with a non power of 2 is slow
 
+// also another weird thing...accuracy doesn't improve at all when i increase table index sizes by 10 (iefrom 12 to 22)
+
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -24,7 +26,7 @@ https://github.com/ChampSim/ChampSim/blob/2b8d3fc28abb6072d7675228418fa7cfe862d4
 #include "LoopPredictor.h"
 #include "ooo_cpu.h"
 
-// original paper parameters (5 tables...resulting in very low accuracy)
+// original paper parameters (5 tables)
 
 // using 9 tables (including bimodal) for now
 namespace
@@ -35,7 +37,7 @@ namespace
 // constexpr std::size_t NUM_TABLES = 5;
 
 constexpr std::size_t GLOBAL_HISTORY_LENGTHS[] = {0, 5, 8, 13, 20, 33, 53, 85, 136}; // follows a geometric series (ratio = 1.6)
-constexpr std::size_t TABLE_INDEX_SIZES[] = {12, 10, 10, 10, 11, 11, 11, 12, 12}; // change as necessary
+constexpr std::size_t TABLE_INDEX_SIZES[] = {12, 10, 10, 11, 11, 11, 11, 12, 12}; // change as necessary
 constexpr std::size_t TAG_SIZES[] = {0, 12, 12, 12, 11, 11, 11, 10, 10}; // change as necessary
 constexpr std::size_t NUM_TABLES = 9; // includes bimodal table
 constexpr std::size_t MAX_TABLE_INDEX_SIZE = 12;
@@ -113,8 +115,8 @@ std::size_t fold_global_history(bool utilizeIP, uint64_t ip, uint64_t tableNum, 
 
     for (uint64_t i = 0; i < hist_len; i += output_len) {
         std::size_t history = 0;
-        for (uint64_t j = 0; j < output_len; j++) {
-            history |= (((uint64_t) bh_vector[0]) << j);
+        for (uint64_t j = i; j < std::min(hist_len, output_len + i); j++) {
+            history |= (((uint64_t) bh_vector[0]) << (j - i));
             bh_vector >>= 1;
         }
         //tempHistory = history & ((1 << output_len) - 1); // extracts rightmost output_len bits
@@ -189,7 +191,7 @@ void update(O3_CPU* cpu, uint64_t ip, uint64_t branch_target, uint8_t taken, uin
     // misprediction occured
     if (actualPrediction != taken)
     {
-        std::size_t startTable = (tableUsedForPred != 0) ? tableUsedForPred : tableUsedForPred + 1;
+        std::size_t startTable = (tableUsedForPred != 0) ? tableUsedForPred : tableUsedForPred + 1; // since we don't want to replace the bimodal table's entries
 
         // determining if a useless entry exists
         bool uselessTableExists = false;
@@ -209,7 +211,7 @@ void update(O3_CPU* cpu, uint64_t ip, uint64_t branch_target, uint8_t taken, uin
         }
         
         
-        // replace first found "useless entry" with current ip's tag and set saturated counter to strongly taken
+        // replace first found "useless entry" with current ip's tag and set saturated counter to weakly taken
         for (std::size_t i = startTable; i < NUM_TABLES; i++)
         {
             auto tempInd = fold_global_history(true, ip, i, GLOBAL_HISTORY_LENGTHS[i],TABLE_INDEX_SIZES[i], 

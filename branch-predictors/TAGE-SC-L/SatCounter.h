@@ -8,7 +8,7 @@ public:
     static const int maximum = (1 << NUM_BITS) - 1;  // Maximum value the counter can hold
     int val;  // Current value of the counter
     // Constructor
-    SatCounter() : val(((1 << NUM_BITS) - 1) / 2) {}
+    //SatCounter() : val(((1 << NUM_BITS) - 1) / 2) {}
 
     // Increment the counter
     void increment() {
