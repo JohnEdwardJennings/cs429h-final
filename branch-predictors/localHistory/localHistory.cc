@@ -23,10 +23,10 @@ constexpr std::size_t LOCAL_HISTORY_LENGTH = 2;
 std::map<O3_CPU*, std::bitset<LOCAL_HISTORY_LENGTH>> prevBits; // stores prev N bits
 
 constexpr std::size_t COUNTER_BITS = 2; // saturated counter length
-constexpr std::size_t firstKBitsOfIP = 0x3FFF; // (right now K=14...ask if i can change it to whole PC; as index for local history table
+constexpr std::size_t firstKBitsOfIP = 0x3FFF; // (right now K=14)
 
-std::map<O3_CPU*, std::map<size_t, std::array<champsim::msl::fwcounter<COUNTER_BITS>,
-        (1 << LOCAL_HISTORY_LENGTH)>>> localHistories; // stores every branch's PC and corresponding local history
+std::map<O3_CPU*, std::array<std::array<champsim::msl::fwcounter<COUNTER_BITS>,
+        (1 << LOCAL_HISTORY_LENGTH)>, (1 << 14)>> localHistories; // stores every branch's PC and corresponding local history
 
 } // namespace....ask what is namespace and why not just make a helper method outside namespace...why does it need to be in namespace
 

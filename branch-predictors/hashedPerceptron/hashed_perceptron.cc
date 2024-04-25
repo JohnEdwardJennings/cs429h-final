@@ -54,15 +54,15 @@ sources for you to plagiarize.
 
 // this many tables
 
-#define NTABLES 16
+#define NTABLES 5
 
 // maximum history length
 
-#define MAXHIST 232
+#define MAXHIST 80
 
 // minimum history length (for table 1; table 0 is biases)
 
-#define MINHIST 3
+#define MINHIST 10
 
 // speed for dynamic threshold setting
 
@@ -81,7 +81,7 @@ namespace
 {
 // geometric global history lengths
 
-inline constexpr int history_lengths[NTABLES] = {0, 3, 4, 6, 8, 10, 14, 19, 26, 36, 49, 67, 91, 125, 170, MAXHIST};
+inline constexpr int history_lengths[NTABLES] = {0, 10, 20, 40, 80};
 
 // tables of 8-bit weights
 
