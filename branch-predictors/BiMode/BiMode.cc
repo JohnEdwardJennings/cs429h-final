@@ -4,7 +4,7 @@ Here is the source for a clear explanation of the interface functions and parame
 https://github.com/ChampSim/ChampSim/blob/2b8d3fc28abb6072d7675228418fa7cfe862d4dc/docs/src/Modules.rst#branch-predictors
 */
 
-// note: gselect uses leftmost k bits of PC and rightmost n-k bits of Global history (assume n is length of global history)...also..bimodal predictor = saturated counter....
+// note: gselect uses leftmost k bits of PC and rightmost n-k bits of Global history (assume n is length of global history)...
 
 // bi-mode is supposed to be another way of making global history better (an alternative to gselect and gshare)
 // note: PHT = pattern history table (basically stores a 2-bit saturated counter given the 14-bit history pattern)
@@ -31,7 +31,6 @@ std::map<O3_CPU*, std::bitset<GLOBAL_HISTORY_LENGTH>> branch_history_vector;
 std::map<O3_CPU*, std::array<champsim::msl::fwcounter<COUNTER_BITS>, PC_TAG_TABLE_SIZE>> choice_predictor;
 std::map<O3_CPU*, std::array<champsim::msl::fwcounter<COUNTER_BITS>, GS_HISTORY_TABLE_SIZE>> history_table_1;
 std::map<O3_CPU*, std::array<champsim::msl::fwcounter<COUNTER_BITS>, GS_HISTORY_TABLE_SIZE>> history_table_2;
-// ask john what exactly does the global history table store (like how does it max out the saturating counter?)
 
 std::size_t getAppropriateTable(O3_CPU* cpu, uint64_t ip)
 {
@@ -45,7 +44,7 @@ std::size_t gselect_table_hash(uint64_t ip, std::bitset<GLOBAL_HISTORY_LENGTH> b
   return hash % GS_HISTORY_TABLE_SIZE;
 }
 
-} // namespace....ask what is namespace and why not just make a helper method outside namespace...why does it need to be in namespace
+}
 
 void O3_CPU::initialize_branch_predictor() {}
 
@@ -66,9 +65,6 @@ uint8_t O3_CPU::predict_branch(uint64_t ip)
     return value.value() >= (value.maximum / 2);
 }
 
-// just to make sure...when is this called (right after predict branch right? so i can assume no saturated counters and history were updated between the last "predict_Branch()" call right?)
-
-// how do i check if prediction was correct or not?
 void O3_CPU::last_branch_result(uint64_t ip, uint64_t branch_target, uint8_t taken, uint8_t branch_type)
 {
     auto gs_hash = gselect_table_hash(ip, ::branch_history_vector[this]);

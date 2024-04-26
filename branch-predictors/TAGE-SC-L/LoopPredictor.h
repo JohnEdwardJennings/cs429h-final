@@ -56,7 +56,8 @@ public:
         }
     }
 
-    // Predict whether the current loop iteration matches past behavior
+    // Predict whether the current loop iteration matches past behavior; based off TAGE-SC-L paper: 
+    // https://inria.hal.science/hal-01086920/document
     bool predict(uint64_t address) {
         std::size_t predInd = address & ((1 << LOG_ENTRIES) - 1); // extracts rightmost bits
         std::size_t tag = (address >> LOG_ENTRIES) & ((1 << TAG_LENGTH) - 1); // to extract different bits for tag
@@ -94,11 +95,6 @@ public:
                     loopPredTable[predInd][colUsedForPrediction].age++;
                 }
             }
-            // else if (actualPrediction != taken) { // overall incorrect prediction, so loop predictor would have been correct
-            //     if (loopPredTable[predInd][colUsedForPrediction].age < ::AGE * 2 + 1) {
-            //         loopPredTable[predInd][colUsedForPrediction].age++;
-            //     }
-            // }
         
             loopPredTable[predInd][colUsedForPrediction].currIterationCount = 
                     (loopPredTable[predInd][colUsedForPrediction].currIterationCount + 1) % ::MAX_ITERATIONS;

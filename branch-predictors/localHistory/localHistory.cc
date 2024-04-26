@@ -28,7 +28,7 @@ constexpr std::size_t firstKBitsOfIP = 0x3FFF; // (right now K=14)
 std::map<O3_CPU*, std::array<std::array<champsim::msl::fwcounter<COUNTER_BITS>,
         (1 << LOCAL_HISTORY_LENGTH)>, (1 << 14)>> localHistories; // stores every branch's PC and corresponding local history
 
-} // namespace....ask what is namespace and why not just make a helper method outside namespace...why does it need to be in namespace
+}
 
 void O3_CPU::initialize_branch_predictor() {}
 
@@ -39,7 +39,6 @@ uint8_t O3_CPU::predict_branch(uint64_t ip)
     return satCounter.value() >= (satCounter.maximum / 2); // uses saturated counter of computed 2-bit local history to predict
 }
 
-// ensure this ip is the same as the predict_branch's ip...
 void O3_CPU::last_branch_result(uint64_t ip, uint64_t branch_target, uint8_t taken, uint8_t branch_type)
 {
     size_t hashVal = ip & ::firstKBitsOfIP;

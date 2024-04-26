@@ -1,4 +1,4 @@
-#pragma once // somehow need to fix
+#pragma once
 
 #include <iostream>
 
@@ -7,8 +7,6 @@ class SatCounter {
 public:
     static const int maximum = (1 << NUM_BITS) - 1;  // Maximum value the counter can hold
     int val;  // Current value of the counter
-    // Constructor
-    //SatCounter() : val(((1 << NUM_BITS) - 1) / 2) {}
 
     // Increment the counter
     void increment() {
@@ -55,7 +53,7 @@ public:
         val = 0;
     }
 
-    // for debugging
+    // for debugging purposes
     void print() {
         std::cout << "Counter Value: " << val << std::endl;
     }

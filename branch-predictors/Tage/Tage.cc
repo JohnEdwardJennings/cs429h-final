@@ -4,12 +4,6 @@ Here is the source for a clear explanation of the interface functions and parame
 https://github.com/ChampSim/ChampSim/blob/2b8d3fc28abb6072d7675228418fa7cfe862d4dc/docs/src/Modules.rst#branch-predictors
 */
 
-// first step: implement the partial tagging stuff (the 5 buffers that each have distinct global history lengths that are xor'ed with PC (basically gshare) to create "tags")
-// specifically we need to "fold" the largeglobal histories into 10-bit indexes and 8-bit tags(via XORs and shifting and etc)
-// then gotta do stuff with the tags (to determine which buffer's prediction to take)
-
-// potentially add the path stuff to XOR with the current hash function i have
-
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -19,10 +13,10 @@ https://github.com/ChampSim/ChampSim/blob/2b8d3fc28abb6072d7675228418fa7cfe862d4
 #include "SaturatedCounter.h"
 #include "ooo_cpu.h"
 
-// original paper parameters (5 tables...resulting in very low accuracy)
-
 namespace
 {
+
+// original paper parameters (5 tables): https://jilp.org/vol7/v7paper10.pdf
 // constexpr std::size_t GLOBAL_HISTORY_LENGTHS[] = {0, 10, 20, 40, 80}; // follows a geometric series
 // constexpr std::size_t TABLE_INDEX_SIZES[] = {12, 10, 10, 10, 10}; // change as necessary
 // constexpr std::size_t TAG_SIZES[] = {0, 8, 8, 8, 8}; // change as necessary
@@ -38,7 +32,7 @@ constexpr std::size_t MAX_PATH_HISTORY_LENGTH = 32; // CHANGE WHEN NECESSARY
 constexpr std::size_t COUNTER_BITS = 3; // saturated counter length (TAGE paper says to use 3)
 constexpr std::size_t GS_HISTORY_TABLE_SIZE = 1 << MAX_TABLE_INDEX_SIZE;
 constexpr std::size_t PERIODIC_RESET = 256000; // to reset useful counter after N branches
-constexpr std::size_t PRIME_LENGTH = 4093; // closest prime number near 2^12
+constexpr std::size_t PRIME_LENGTH = 4093; // closest prime number near 2^12 (not used in actual program)
 std::size_t totalBranches = 0;
 
 typedef struct table_entry {
@@ -61,42 +55,12 @@ std::map<O3_CPU*, std::bitset<MAX_PATH_HISTORY_LENGTH>> path_history_vector;
 std::map<O3_CPU*, std::array<std::array<table_entry,
         GS_HISTORY_TABLE_SIZE>, NUM_TABLES>> prediction_table; // stores every branch's PC and corresponding local history
 
-// comment method out if useless
-// std::size_t get_path_history_hash(uint64_t component, 
-//         std::bitset<MAX_PATH_HISTORY_LENGTH> ph_vector)
-// {
-//     /*
-//     Use a hash-function to compress the path history
-//     */
-//     uint64_t A = 0;
-    
-//     uint64_t size = GLOBAL_HISTORY_LENGTHS[component] > 16 ? 16 : GLOBAL_HISTORY_LENGTHS[component]; // Size of path history output
-//     for (int i = MAX_PATH_HISTORY_LENGTH - 1; i >= 0; i--)
-//     {
-//         A = (A << 1) | ph_vector[i]; // Build the bit vector a using the path history array
-//     }
-
-//     A = A & ((1 << size) - 1);
-//     uint64_t A1;
-//     uint64_t A2;
-//     A1 = A & ((1 << TABLE_INDEX_SIZES[component]) - 1); // Get last M bits of A
-//     A2 = A >> TABLE_INDEX_SIZES[component]; // Get second last M bits of A
-
-//     // Use the hashing from the CBP-4 L-Tage submission
-//     A2 = ((A2 << component) & ((1 << TABLE_INDEX_SIZES[component]) - 1)) + (A2 >> abs(TABLE_INDEX_SIZES[component] - component));
-//     A = A1 ^ A2;
-//     A = ((A << component) & ((1 << TABLE_INDEX_SIZES[component]) - 1)) + (A >> abs(TABLE_INDEX_SIZES[component] - component));
-    
-//     return (A);
-// }
-// note: rightmost bits are the most recent ones for history...also assume output_len is divisible by hist_len
+// note: rightmost bits are the most recent ones for history
 // utilizeIP should be false if computing tag, else true 
 std::size_t fold_global_history(bool utilizeIP, uint64_t ip, uint64_t tableNum, uint64_t hist_len, uint64_t 
         output_len, std::bitset<MAX_GLOBAL_HISTORY_LENGTH> bh_vector,
         std::bitset<MAX_PATH_HISTORY_LENGTH> ph_vector)
 {
-    //std::size_t history = bh_vector.to_ullong();
-    //std::bitset<MAX_GLOBAL_HISTORY_LENGTH> history = bh_vector;
     std::size_t tempHistory = 0;
     uint64_t foldedHistory = 0;
     if (tableNum == 0) {
@@ -109,26 +73,20 @@ std::size_t fold_global_history(bool utilizeIP, uint64_t ip, uint64_t tableNum, 
             history |= (((uint64_t) bh_vector[0]) << (j - i));
             bh_vector >>= 1;
         }
-        //tempHistory = history & ((1 << output_len) - 1); // extracts rightmost output_len bits
         tempHistory = history;
         foldedHistory ^= tempHistory;
-        //history = history >> output_len; // ensures the rightmost bits are shifted in batches
     }
 
     if (utilizeIP) {
-        //foldedHistory ^= get_path_history_hash(tableNum, ph_vector); // comment this out if useless
         foldedHistory ^= (ip & ((1 << output_len) - 1));
         ip = ip >> output_len;
         foldedHistory ^= (ip & ((1 << output_len) - 1)); // this is the resulting index into "prediction_table"
-        // ip = ip >> output_len;
-        // foldedHistory ^= (ip & ((1 << output_len) - 1));
     }
 
     return foldedHistory & ((1 << output_len) - 1);
 }
 
-// to be completed (using same 2 shift registers principle from the paper: https://jilp.org/vol7/v7paper10.pdf)
-// potentially remove table_index
+// uses same 2 shift registers principle from the paper: https://jilp.org/vol7/v7paper10.pdf
 std::size_t computeTag(uint64_t ip, uint64_t tableNum, uint64_t hist_len, uint64_t output_len, std::bitset<MAX_GLOBAL_HISTORY_LENGTH> bh_vector, std::bitset<MAX_PATH_HISTORY_LENGTH> ph_vector) {
     
     auto tagHash = ::fold_global_history(false, ip, tableNum, ::GLOBAL_HISTORY_LENGTHS[tableNum], 
@@ -183,7 +141,7 @@ void update(O3_CPU* cpu, uint64_t ip, uint64_t branch_target, uint8_t taken, uin
     // misprediction occured
     if (actualPrediction != taken)
     {
-        std::size_t startTable = (tableUsedForPred != 0) ? tableUsedForPred : tableUsedForPred + 1;
+        std::size_t startTable = tableUsedForPred + 1;
 
         // determining if a useless entry exists
         bool uselessTableExists = false;
@@ -196,21 +154,27 @@ void update(O3_CPU* cpu, uint64_t ip, uint64_t branch_target, uint8_t taken, uin
                 uselessTableExists = true;
             }
         }
-        if (!uselessTableExists) {
+
+        if (!uselessTableExists && startTable < NUM_TABLES) {
             auto tempInd = fold_global_history(true, ip, startTable , GLOBAL_HISTORY_LENGTHS[startTable],
                     TABLE_INDEX_SIZES[startTable], branch_history_vector[cpu], path_history_vector[cpu]);
             prediction_table[cpu][startTable][tempInd].useful.reset();
         }
+        auto temporaryInd = fold_global_history(true, ip, NUM_TABLES - 1 , GLOBAL_HISTORY_LENGTHS[NUM_TABLES - 1],
+                    TABLE_INDEX_SIZES[NUM_TABLES - 1], branch_history_vector[cpu], path_history_vector[cpu]);
+
+        if (startTable == NUM_TABLES && prediction_table[cpu][NUM_TABLES - 1][temporaryInd].useful.val == 0) {
+            startTable = startTable - 1;
+        }
         
-        
-        // replace first found "useless entry" with current ip's tag and set saturated counter to strongly taken
+        // replace some "useless entry" with current ip's tag and set saturated counter to strongly taken
         for (std::size_t i = startTable; i < NUM_TABLES; i++)
         {
             auto tempInd = fold_global_history(true, ip, i, GLOBAL_HISTORY_LENGTHS[i],TABLE_INDEX_SIZES[i], 
                     branch_history_vector[cpu], path_history_vector[cpu]);
             table_entry *tempIndEntry = &prediction_table[cpu][i][tempInd];
 
-            if (tempIndEntry->useful.val == 0 && !(rand() % 5)) // maybe change to == 0 (strongly useless)...also uses random sampling
+            if (tempIndEntry->useful.val == 0 && !(rand() % 5)) // uses random sampling to not always evict first useless entry
             {
                 tempIndEntry->tag = computeTag(ip, i, GLOBAL_HISTORY_LENGTHS[i],
                     TABLE_INDEX_SIZES[i], branch_history_vector[cpu], path_history_vector[cpu]);
