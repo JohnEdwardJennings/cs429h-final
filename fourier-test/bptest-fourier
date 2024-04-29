@@ -5,6 +5,7 @@ if [ "$1" == "" ]
 then
 	name=*
 fi
+cd ..
 cd ChampSim
 for i in ../branch-predictors/fourier; do
 	ii=${i#../branch-predictors/}
@@ -22,3 +23,4 @@ for i in ../branch-predictors/fourier; do
 	rm champsim_config_scratch.json
 done
 cd ..
+cd fourier-test
