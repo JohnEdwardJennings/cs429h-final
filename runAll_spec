@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Define the list of branch predictors and cache replacement policies
+branch_predictors=("bimodal" "BiMode" "fourier" "perceptron" "gselect" "gshare" "hashed_perceptron"
+                   "localHistory" "LSTM" "LTageAlt" "perceptron" "Tage" "TAGE-SC-L")
+cache_replacement_policies=("lru")
+
+# Loop through all combinations
+for branch_pred in "${branch_predictors[@]}"; do
+    for cache_repl in "${cache_replacement_policies[@]}"; do
+        ./run_spec2006.sh "$branch_pred" "$cache_repl"
+    done
+done
