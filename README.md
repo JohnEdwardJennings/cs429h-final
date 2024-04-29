@@ -69,9 +69,25 @@ vim branch-predictors/<branch-predictor-name>/<filename>.cc
 ```
 . bptest
 ```
+
 The output for each test will appear in the file `out/<branch-predictor-name>_<test_name>`.
 
 To run only a specific branch predictor:
 ```
 . bptest <branch-predictor-name>
 ```
+
+
+### Running spec2006
+To run against spec, enter the Champsim directory, do 
+
+```
+./build.sh TAGE-SC-L lru 1
+```
+(you may replace TAGE-SC-L with the type of branch predictor).
+
+On a separate terminal, ssh into the darmok server, and run the script
+```
+./run_spec2006.sh TAGE-SC-L lru
+```
+which will submit results to the cluster. The results will appear in the output directory in Champsim.
