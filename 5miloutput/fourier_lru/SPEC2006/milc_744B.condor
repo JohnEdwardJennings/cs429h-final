@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.milc_744B.OUT
+log=CONDOR.milc_744B.LOG
+error=CONDOR.milc_744B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/fourier_lru/SPEC2006
+executable=output/fourier_lru/SPEC2006/milc_744B.sh
+queue

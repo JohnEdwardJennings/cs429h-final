@@ -1,0 +1,38 @@
+000 (981220.000.000) 2024-04-25 16:48:34 Job submitted from host: <128.83.120.183:9618?addrs=128.83.120.183-9618&alias=darmok.cs.utexas.edu&noUDP&sock=schedd_1353_9fba>
+...
+001 (981220.000.000) 2024-04-25 16:48:47 Job executing on host: <128.83.139.146:9618?addrs=128.83.139.146-9618&alias=angrist-19.cs.utexas.edu&noUDP&sock=startd_1594_ee0d>
+...
+006 (981220.000.000) 2024-04-25 16:48:55 Image size of job updated: 37168
+	14  -  MemoryUsage of job (MB)
+	14084  -  ResidentSetSize of job (KB)
+...
+006 (981220.000.000) 2024-04-25 16:49:24 Image size of job updated: 39652
+	14  -  MemoryUsage of job (MB)
+	14084  -  ResidentSetSize of job (KB)
+...
+004 (981220.000.000) 2024-04-25 16:49:25 Job was evicted.
+	(0) CPU times
+		Usr 0 00:00:37, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 1         1 
+	   Disk (KB)            :        1        1  10853596 
+	   Memory (MB)          :       14        1      4026 
+...
+009 (981220.000.000) 2024-04-25 16:49:29 Job was aborted.
+	via condor_rm (by user sahilsc)
+...
+000 (981909.000.000) 2024-04-25 16:54:29 Job submitted from host: <128.83.120.183:9618?addrs=128.83.120.183-9618&alias=darmok.cs.utexas.edu&noUDP&sock=schedd_1353_9fba>
+...
+001 (981909.000.000) 2024-04-25 16:54:48 Job executing on host: <128.83.144.168:9618?addrs=128.83.144.168-9618&alias=angrist-10.cs.utexas.edu&noUDP&sock=startd_1611_9729>
+...
+006 (981909.000.000) 2024-04-25 16:54:56 Image size of job updated: 37168
+	13  -  MemoryUsage of job (MB)
+	13232  -  ResidentSetSize of job (KB)
+...
+006 (981909.000.000) 2024-04-25 16:59:56 Image size of job updated: 39916
+	15  -  MemoryUsage of job (MB)
+	15324  -  ResidentSetSize of job (KB)
+...

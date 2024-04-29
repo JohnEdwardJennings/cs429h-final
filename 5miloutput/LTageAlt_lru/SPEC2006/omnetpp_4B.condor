@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.omnetpp_4B.OUT
+log=CONDOR.omnetpp_4B.LOG
+error=CONDOR.omnetpp_4B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/LTageAlt_lru/SPEC2006
+executable=output/LTageAlt_lru/SPEC2006/omnetpp_4B.sh
+queue

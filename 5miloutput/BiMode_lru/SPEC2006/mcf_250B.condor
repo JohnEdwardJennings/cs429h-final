@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.mcf_250B.OUT
+log=CONDOR.mcf_250B.LOG
+error=CONDOR.mcf_250B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/BiMode_lru/SPEC2006
+executable=output/BiMode_lru/SPEC2006/mcf_250B.sh
+queue

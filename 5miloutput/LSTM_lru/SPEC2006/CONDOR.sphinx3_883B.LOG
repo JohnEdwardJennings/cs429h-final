@@ -1,0 +1,95 @@
+000 (984680.000.000) 2024-04-26 11:01:15 Job submitted from host: <128.83.120.183:9618?addrs=128.83.120.183-9618&alias=darmok.cs.utexas.edu&noUDP&sock=schedd_1353_9fba>
+...
+001 (984680.000.000) 2024-04-26 11:01:34 Job executing on host: <128.83.144.240:9618?addrs=128.83.144.240-9618&alias=angrist-13.cs.utexas.edu&noUDP&sock=startd_1643_8a31>
+...
+006 (984680.000.000) 2024-04-26 11:01:42 Image size of job updated: 101592
+	100  -  MemoryUsage of job (MB)
+	101592  -  ResidentSetSize of job (KB)
+...
+006 (984680.000.000) 2024-04-26 11:06:42 Image size of job updated: 148336
+	121  -  MemoryUsage of job (MB)
+	123184  -  ResidentSetSize of job (KB)
+...
+006 (984680.000.000) 2024-04-26 11:07:34 Image size of job updated: 148468
+	121  -  MemoryUsage of job (MB)
+	123184  -  ResidentSetSize of job (KB)
+...
+005 (984680.000.000) 2024-04-26 11:07:34 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:06:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:06:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     1.00        1         1 
+	   Disk (KB)            :     1           1  10853596 
+	   Memory (MB)          :   121           1      4026 
+
+	Job terminated of its own accord at 2024-04-26T16:07:34Z.
+...
+000 (984733.000.000) 2024-04-26 11:13:54 Job submitted from host: <128.83.120.183:9618?addrs=128.83.120.183-9618&alias=darmok.cs.utexas.edu&noUDP&sock=schedd_1353_9fba>
+...
+001 (984733.000.000) 2024-04-26 11:13:59 Job executing on host: <128.83.139.142:9618?addrs=128.83.139.142-9618&alias=angrist-15.cs.utexas.edu&noUDP&sock=startd_1598_ac6e>
+...
+006 (984733.000.000) 2024-04-26 11:14:07 Image size of job updated: 126696
+	100  -  MemoryUsage of job (MB)
+	101592  -  ResidentSetSize of job (KB)
+...
+006 (984733.000.000) 2024-04-26 11:19:07 Image size of job updated: 148340
+	121  -  MemoryUsage of job (MB)
+	123188  -  ResidentSetSize of job (KB)
+...
+006 (984733.000.000) 2024-04-26 11:20:12 Image size of job updated: 148472
+	121  -  MemoryUsage of job (MB)
+	123188  -  ResidentSetSize of job (KB)
+...
+005 (984733.000.000) 2024-04-26 11:20:13 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:06:13, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:06:13, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     1.00        1         1 
+	   Disk (KB)            :     1           1  10853596 
+	   Memory (MB)          :   121           1      4026 
+
+	Job terminated of its own accord at 2024-04-26T16:20:12Z.
+...
+000 (984786.000.000) 2024-04-26 11:40:20 Job submitted from host: <128.83.120.183:9618?addrs=128.83.120.183-9618&alias=darmok.cs.utexas.edu&noUDP&sock=schedd_1353_9fba>
+...
+001 (984786.000.000) 2024-04-26 11:40:39 Job executing on host: <128.83.139.142:9618?addrs=128.83.139.142-9618&alias=angrist-15.cs.utexas.edu&noUDP&sock=startd_1598_ac6e>
+...
+006 (984786.000.000) 2024-04-26 11:40:47 Image size of job updated: 126688
+	100  -  MemoryUsage of job (MB)
+	101588  -  ResidentSetSize of job (KB)
+...
+006 (984786.000.000) 2024-04-26 11:43:43 Image size of job updated: 148200
+	100  -  MemoryUsage of job (MB)
+	101588  -  ResidentSetSize of job (KB)
+...
+005 (984786.000.000) 2024-04-26 11:43:43 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:03:04, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:03:04, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 1         1 
+	   Disk (KB)            :        1        1  10853596 
+	   Memory (MB)          :      100        1      4026 
+
+	Job terminated of its own accord at 2024-04-26T16:43:43Z.
+...

@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.astar_23B.OUT
+log=CONDOR.astar_23B.LOG
+error=CONDOR.astar_23B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/perceptron_lru/SPEC2006
+executable=output/perceptron_lru/SPEC2006/astar_23B.sh
+queue

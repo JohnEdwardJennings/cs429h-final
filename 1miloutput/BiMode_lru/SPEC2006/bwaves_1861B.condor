@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.bwaves_1861B.OUT
+log=CONDOR.bwaves_1861B.LOG
+error=CONDOR.bwaves_1861B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/BiMode_lru/SPEC2006
+executable=output/BiMode_lru/SPEC2006/bwaves_1861B.sh
+queue

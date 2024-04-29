@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.wrf_1650B.OUT
+log=CONDOR.wrf_1650B.LOG
+error=CONDOR.wrf_1650B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/BiMode_lru/SPEC2006
+executable=output/BiMode_lru/SPEC2006/wrf_1650B.sh
+queue

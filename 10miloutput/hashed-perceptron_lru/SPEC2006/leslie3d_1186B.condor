@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.leslie3d_1186B.OUT
+log=CONDOR.leslie3d_1186B.LOG
+error=CONDOR.leslie3d_1186B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/hashed-perceptron_lru/SPEC2006
+executable=output/hashed-perceptron_lru/SPEC2006/leslie3d_1186B.sh
+queue

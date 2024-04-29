@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.gcc_56B.OUT
+log=CONDOR.gcc_56B.LOG
+error=CONDOR.gcc_56B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/localHistory_lru/SPEC2006
+executable=output/localHistory_lru/SPEC2006/gcc_56B.sh
+queue

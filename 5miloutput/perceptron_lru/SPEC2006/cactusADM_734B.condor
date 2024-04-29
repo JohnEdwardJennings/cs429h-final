@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.cactusADM_734B.OUT
+log=CONDOR.cactusADM_734B.LOG
+error=CONDOR.cactusADM_734B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/perceptron_lru/SPEC2006
+executable=output/perceptron_lru/SPEC2006/cactusADM_734B.sh
+queue

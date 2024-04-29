@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.soplex_66B.OUT
+log=CONDOR.soplex_66B.LOG
+error=CONDOR.soplex_66B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/localHistory_lru/SPEC2006
+executable=output/localHistory_lru/SPEC2006/soplex_66B.sh
+queue

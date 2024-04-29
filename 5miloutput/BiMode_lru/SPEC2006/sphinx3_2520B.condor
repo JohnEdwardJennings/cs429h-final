@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.sphinx3_2520B.OUT
+log=CONDOR.sphinx3_2520B.LOG
+error=CONDOR.sphinx3_2520B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/BiMode_lru/SPEC2006
+executable=output/BiMode_lru/SPEC2006/sphinx3_2520B.sh
+queue

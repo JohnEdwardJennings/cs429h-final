@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.lbm_1004B.OUT
+log=CONDOR.lbm_1004B.LOG
+error=CONDOR.lbm_1004B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/LTageAlt_lru/SPEC2006
+executable=output/LTageAlt_lru/SPEC2006/lbm_1004B.sh
+queue

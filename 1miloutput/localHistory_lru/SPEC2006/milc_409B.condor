@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.milc_409B.OUT
+log=CONDOR.milc_409B.LOG
+error=CONDOR.milc_409B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/localHistory_lru/SPEC2006
+executable=output/localHistory_lru/SPEC2006/milc_409B.sh
+queue

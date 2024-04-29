@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.bzip2_183B.OUT
+log=CONDOR.bzip2_183B.LOG
+error=CONDOR.bzip2_183B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/localHistory_lru/SPEC2006
+executable=output/localHistory_lru/SPEC2006/bzip2_183B.sh
+queue

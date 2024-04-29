@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.zeusmp_300B.OUT
+log=CONDOR.zeusmp_300B.LOG
+error=CONDOR.zeusmp_300B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/LSTM_lru/SPEC2006
+executable=output/LSTM_lru/SPEC2006/zeusmp_300B.sh
+queue

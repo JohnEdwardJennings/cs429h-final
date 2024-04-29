@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.lbm_94B.OUT
+log=CONDOR.lbm_94B.LOG
+error=CONDOR.lbm_94B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/hashed-perceptron_lru/SPEC2006
+executable=output/hashed-perceptron_lru/SPEC2006/lbm_94B.sh
+queue

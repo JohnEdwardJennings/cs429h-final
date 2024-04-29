@@ -1,0 +1,16 @@
+000 (981355.000.000) 2024-04-25 16:50:11 Job submitted from host: <128.83.120.183:9618?addrs=128.83.120.183-9618&alias=darmok.cs.utexas.edu&noUDP&sock=schedd_1353_9fba>
+...
+001 (981355.000.000) 2024-04-25 16:50:26 Job executing on host: <128.83.144.240:9618?addrs=128.83.144.240-9618&alias=angrist-13.cs.utexas.edu&noUDP&sock=startd_1643_8a31>
+...
+006 (981355.000.000) 2024-04-25 16:50:34 Image size of job updated: 38144
+	14  -  MemoryUsage of job (MB)
+	13980  -  ResidentSetSize of job (KB)
+...
+006 (981355.000.000) 2024-04-25 16:55:34 Image size of job updated: 39168
+	15  -  MemoryUsage of job (MB)
+	14540  -  ResidentSetSize of job (KB)
+...
+006 (981355.000.000) 2024-04-25 17:00:34 Image size of job updated: 39168
+	15  -  MemoryUsage of job (MB)
+	14576  -  ResidentSetSize of job (KB)
+...

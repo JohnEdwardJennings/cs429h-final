@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.hmmer_7B.OUT
+log=CONDOR.hmmer_7B.LOG
+error=CONDOR.hmmer_7B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/Tage_lru/SPEC2006
+executable=output/Tage_lru/SPEC2006/hmmer_7B.sh
+queue

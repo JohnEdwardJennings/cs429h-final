@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.leslie3d_94B.OUT
+log=CONDOR.leslie3d_94B.LOG
+error=CONDOR.leslie3d_94B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/LTageAlt_lru/SPEC2006
+executable=output/LTageAlt_lru/SPEC2006/leslie3d_94B.sh
+queue

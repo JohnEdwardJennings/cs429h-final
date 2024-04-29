@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.libquantum_1735B.OUT
+log=CONDOR.libquantum_1735B.LOG
+error=CONDOR.libquantum_1735B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/perceptron_lru/SPEC2006
+executable=output/perceptron_lru/SPEC2006/libquantum_1735B.sh
+queue

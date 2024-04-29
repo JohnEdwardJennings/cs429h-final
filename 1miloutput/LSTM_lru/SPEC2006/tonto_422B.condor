@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.tonto_422B.OUT
+log=CONDOR.tonto_422B.LOG
+error=CONDOR.tonto_422B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/LSTM_lru/SPEC2006
+executable=output/LSTM_lru/SPEC2006/tonto_422B.sh
+queue

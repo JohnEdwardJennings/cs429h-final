@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.xalancbmk_748B.OUT
+log=CONDOR.xalancbmk_748B.LOG
+error=CONDOR.xalancbmk_748B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/gselect_lru/SPEC2006
+executable=output/gselect_lru/SPEC2006/xalancbmk_748B.sh
+queue

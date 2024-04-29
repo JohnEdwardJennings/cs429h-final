@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.wrf_1212B.OUT
+log=CONDOR.wrf_1212B.LOG
+error=CONDOR.wrf_1212B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/LSTM_lru/SPEC2006
+executable=output/LSTM_lru/SPEC2006/wrf_1212B.sh
+queue

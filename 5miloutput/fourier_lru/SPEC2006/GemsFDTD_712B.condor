@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.GemsFDTD_712B.OUT
+log=CONDOR.GemsFDTD_712B.LOG
+error=CONDOR.GemsFDTD_712B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/fourier_lru/SPEC2006
+executable=output/fourier_lru/SPEC2006/GemsFDTD_712B.sh
+queue

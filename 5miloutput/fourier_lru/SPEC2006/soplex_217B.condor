@@ -1,0 +1,14 @@
++Group="GRAD"
++Project="ARCHITECTURE"
++ProjectDescription="Micro-architectural simulation"
+universe=vanilla
+getenv=true
+Rank=Memory
+notification=Error
+output=CONDOR.soplex_217B.OUT
+log=CONDOR.soplex_217B.LOG
+error=CONDOR.soplex_217B.ERR
+notify_user=sahilsc@cs.utexas.edu
+initialdir=output/fourier_lru/SPEC2006
+executable=output/fourier_lru/SPEC2006/soplex_217B.sh
+queue
