@@ -65,8 +65,13 @@ vim branch-predictors/<branch-predictor-name>/<filename>.cc
 * Substitute desired strings for `<branch-predictor-name>` and `<filename>` in the commands above (to be safe, stick to alphanumeric characters and hyphens).
 * Implement the methods to create a fully functional branch predictor!
 
-### Run tests
+### Run tests (IPC1 benchmarks)
 ```
 . bptest
 ```
 The output for each test will appear in the file `out/<branch-predictor-name>_<test_name>`.
+
+To run only a specific branch predictor, use
+```
+. bptest <branch-predictor-name>
+```
