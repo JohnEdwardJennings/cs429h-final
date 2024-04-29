@@ -71,7 +71,7 @@ vim branch-predictors/<branch-predictor-name>/<filename>.cc
 ```
 The output for each test will appear in the file `out/<branch-predictor-name>_<test_name>`.
 
-To run only a specific branch predictor, use
+To run only a specific branch predictor:
 ```
 . bptest <branch-predictor-name>
 ```
