@@ -12,6 +12,7 @@ https://github.com/ChampSim/ChampSim/blob/2b8d3fc28abb6072d7675228418fa7cfe862d4
 //#include "msl/fwcounter.h"
 #include "SatCounter.h"
 #include "LoopPredictor.h"
+#include "SCPredictor.h"
 #include "ooo_cpu.h"
 
 
@@ -58,6 +59,7 @@ std::map<O3_CPU*, std::array<std::array<table_entry,
         GS_HISTORY_TABLE_SIZE>, NUM_TABLES>> prediction_table; // stores every branch's PC and corresponding local history
 
 std::map<O3_CPU*, LoopPredictor> loop_predictor;
+std::map<O3_CPU*, SCPredictor> SC_predictor;
 
 // note: rightmost bits are the most recent ones for history
 // utilizeIP should be false if computing tag, else true 
@@ -263,12 +265,20 @@ uint8_t O3_CPU::predict_branch(uint64_t ip)
     // determining whether to use prediction or not
     auto value = actualEntry.counter;
     ::actualPrediction = value.predictTaken();
-    return ::actualPrediction;
+
+    auto SCresult = ::SC_predictor[this].SC_predict(ip, ::actualPrediction);
+    auto realResult = ::actualPrediction;
+    if (SCresult) {
+        realResult = !(::actualPrediction);
+    }
+
+    return realResult;
 }
 
 void O3_CPU::last_branch_result(uint64_t ip, uint64_t branch_target, uint8_t taken, uint8_t branch_type)
 {
     ::loop_predictor[this].update(ip, taken, actualPrediction);
+    ::SC_predictor[this].update(ip, actualPrediction, taken);
     ::update(this, ip, branch_target, taken, branch_type);
 
     // reset useful counters in table if necessary
