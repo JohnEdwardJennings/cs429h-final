@@ -6,6 +6,7 @@
 
 #define BUFSIZE 4096
 
+// Extracts output from ChampSim and prints only the lines containing branch prediction statistics.
 int main() {
 	size_t bufsize = BUFSIZE;
 	char* linebuf = malloc(BUFSIZE);
