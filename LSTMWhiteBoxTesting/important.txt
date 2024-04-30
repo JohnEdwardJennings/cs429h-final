@@ -1,0 +1,11 @@
+g++ -o practice practice.cpp clstm.cc batches.cc clstm_compute.cc tensor.cc clstm_prefab.cc -I. -I./eigen -g
+  570  g++ -c -I. -I./eigen -g practice.cpp
+  571  g++ -c -I. -I./eigen -g clstm.cc
+  572  g++ -c -I. -I./eigen -g batches.cc
+  573  g++ -c -I. -I./eigen -g clstm_compute.cc
+  574  g++ -c -I. -I./eigen -g tensor.cc
+  575  g++ -c -I. -I./eigen -g clstm_prefab.cc
+  576  g++ -o practice practice.o clstm.o batches.o clstm_compute.o tensor.o clstm_prefab.o
+  577  g++ -c -I. -I./eigen -g practice.cpp
+  578  g++ -o practice practice.o clstm.o batches.o clstm_compute.o tensor.o clstm_prefab.o
+  579  ./practice 
